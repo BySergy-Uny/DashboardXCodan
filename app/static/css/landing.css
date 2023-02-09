@@ -1,0 +1,267 @@
+
+body {
+    /* Landing Page Responsive */
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    margin: 0px !important;
+
+    /* Background/Ligth */
+
+    background: #F4F5F7;
+
+        
+}
+
+.navbar {
+    
+    /* Navbar Simple */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    height: 85px;
+    left: 5.6%;
+    right: 15.07%;
+    top: 18px;
+
+}
+
+.logo {
+    /* logo / logotype */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    width: 224px;
+    height: 85px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.logo .logotype {
+   
+    /* logotype-dark-dashboardxcodan-withoutbg-fit 1 */
+    width: 250px;
+    height: 75px;
+    
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+
+.main { 
+
+/* Main */
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+gap: 10vw;
+
+position: absolute;
+left: 15%;
+right: 15%;
+top: 17.76%;
+bottom: 17%;
+}
+
+
+.textWithButton {
+    /* textWithButtons */
+    justify-content: center;
+    align-items: center;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+
+    width: 30rem;
+    height: 100%;
+
+
+    /* Inside auto layout */
+
+    order: 0;
+
+}
+
+.header.bold {
+/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. */
+
+
+width: auto;
+height: 132px;
+
+/* Header/Header Bold */
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 44px;
+display: flex;
+align-items: center;
+text-align: center;
+
+/* Text Colors/Dark */
+
+color: #333333;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+
+.body.little.regular {
+/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. */
+
+
+width: 372px;
+height: 31px;
+
+/* Body/Body Little Regular */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+display: flex;
+align-content: center;
+text-align: center;
+justify-content: center;
+
+/* Text Colors/Grey */
+
+color: #535353;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.button.ligth {
+/* Button Ligth */
+
+
+width: 165px;
+height: 37px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+
+/* Body/Body Middle Regular */
+
+font-family: 'Source Code Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+text-align: center;
+
+/* Text Colors/Dark */
+
+color: #333333;
+/* Button, CTA & Inputs Colors/Yellow */
+
+background: #F8DA3D;
+border-radius: 25px;
+border: 0px;
+}
+
+
+
+.sticker{
+/* Sticker / Principal page */
+
+
+width: 364px;
+height: auto;
+
+aspect-ratio: 1 / 1;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+
+}
+
+
+.svg-container {
+
+    /* svg-container */
+    position: relative;
+    left: 0px;
+    right: 0px;
+    top: 19.95%;
+    bottom: 0%;
+    width: 100%;
+    z-index: -1;
+
+}
+
+.svg-div {
+
+    /* svg-div */
+
+
+position: absolute;
+left: -206px;
+right: -195px;
+top: 188.33px;
+bottom: -110.29px;
+
+
+}
+
+.svg-div svg {
+
+    /* svg */
+width: 100% !important;
+height: 90% !important;
+position: absolute;
+left: 0.01%;
+right: 0%;
+top: -10%;
+bottom: 0%;
+
+}
