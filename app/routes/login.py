@@ -9,8 +9,11 @@ def login():
         print("[+] Error login -> ", eval(args.get('error')))
         error_value = eval(args.get('error'))
     except:
-        print("[+] Error login -> ", "Error value")
-        error_value = True
+        print("[+] Error login -> ", "Error value" , str(args.get('error')))
+        if args.get('error')==None:
+            error_value = False
+        else: 
+            error_value = True
     return render_template('login.html', show_error=error_value)
 
 
