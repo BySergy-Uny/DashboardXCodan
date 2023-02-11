@@ -1,10 +1,17 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from app.tools.database_connection import *
 
-@app.route("/login")
+@app.route("/login", methods=['GET'])
 def login():
-    return render_template('login.html', show_error=False)
+    args = request.args
+    try:
+        print("[+] Error login -> ", eval(args.get('error')))
+        error_value = eval(args.get('error'))
+    except:
+        print("[+] Error login -> ", "Error value")
+        error_value = True
+    return render_template('login.html', show_error=error_value)
 
 
 @app.route('/login-form', methods=['POST'])
@@ -17,8 +24,12 @@ def login_form():
     user_data = db_mongo.search_into_collection({"username": username})
     try:
         validated_token = (user_data['token'] == password)
+        print("[+] Result query mongoDB -> ", user_data, " -- validation: ", validated_token)
+        if validated_token:
+            return "Ok - Logueado"
+        else:
+            return redirect(url_for('login', error=True))
     except:
-        validated_token = False
-    print("[+] Result query mongoDB -> ", user_data, " -- validation: ", validated_token)
-    return render_template('login.html', show_error=True)
+        return redirect(url_for('login', error=True))
+    
 
