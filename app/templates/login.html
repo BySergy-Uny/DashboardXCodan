@@ -18,11 +18,15 @@
         <h1 class="info-div">DashboardXCodan Login</h1>
     <div class="input-div">
         <p class="info-username">Username</p>
+        
         <input type="text" name="username" id="username" class="input-username">
         <p class="info-password">Password</p>
         <input type="text" name="password" id="password" class="input-password">
     </div>
     <input type="submit" value="Login" class="button-login">
     </form>
+    {% if show_error == True %}
+        <p>* Datos inconrrectos, vuelva a intentarlo</p>
+    {% endif %}
 </body>
 </html>
