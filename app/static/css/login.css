@@ -1,0 +1,299 @@
+body {
+    /* Landing Page Responsive */
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    margin: 0px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Background/Ligth */
+
+    background: #F4F5F7;
+
+        
+}
+
+.navbar {
+    
+    /* Navbar Simple */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    height: 85px;
+    left: 5.6%;
+    right: 15.07%;
+    top: 18px;
+
+}
+
+.login-div {
+    /* Login Div */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 25px 0px;
+gap: 25px;
+
+width: 439px;
+height: 338px;
+
+background: rgba(0, 0, 0, 0.03);
+border-radius: 10px;
+}
+
+.info-div {
+    /* Info Div */
+
+
+width: 361px;
+height: 44px;
+
+/* Header/Header Bold */
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 44px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+margin-bottom: 1.5rem;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.input-div {
+    /* Input Div */
+
+
+/* Auto layout */
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 0rem;
+
+width: 361.59px;
+height: 157px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.info-username {
+    /* Info Username */
+
+
+width: 77px;
+height: 22px;
+
+/* Header/Header Little Regular */
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.input-username {
+    /* Input Username */
+
+
+width: 361.59px;
+height: 40px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Body/Body Middle Regular */
+
+font-family: 'Source Code Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+display: flex;
+align-items: center;
+
+/* Text Colors/Grey */
+
+color: #535353;
+
+/* Button, CTA & Inputs Colors/Light Yellow */
+
+background: #FFECA0;
+border-radius: 10px;
+border: none;
+outline: none;
+
+}
+
+.info-password {
+    /* Info Password */
+
+
+width: 72px;
+height: 22px;
+
+/* Header/Header Little Regular */
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
+
+.input-password {
+
+/* Input Password */
+
+
+width: 361.59px;
+height: 40px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 3;
+flex-grow: 0;
+
+/* Body/Body Middle Regular */
+
+font-family: 'Source Code Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+display: flex;
+align-items: center;
+
+/* Text Colors/Grey */
+
+color: #535353;
+
+/* Button, CTA & Inputs Colors/Light Yellow */
+
+background: #FFECA0;
+border-radius: 10px;
+border: none;
+outline: none;
+
+}
+
+.input-username:hover, .input-password:hover {
+    background-color:#F8DA3D;
+}
+
+.input-username:focus, .input-password:focus {
+    background-color:#F8DA3D;
+}
+
+.button-login {
+   /* Button Login */
+
+
+width: 209px;
+height: 44px;
+margin-top: 1rem;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+
+/* Body/Body High Regular */
+
+font-family: 'Source Code Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 18px;
+display: flex;
+align-items: center;
+text-align: center;
+justify-content: center;
+
+/* Text Colors/Dark */
+
+color: #333333;
+
+/* Button, CTA & Inputs Colors/Yellow */
+
+background: #F8DA3D;
+border-radius: 25px;
+border: 0px;
+
+
+}
+
+.button-login:hover {
+    background-color: #FFECA0;
+}
