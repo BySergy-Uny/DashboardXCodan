@@ -32,6 +32,12 @@ class databaseTool:
         except:
             return False
     
+    def search_into_collection(self, search):
+        try:
+            return self.pointer.find_one(search)
+        except:
+            return False     
+    
     def set_database(self, database):
         if (database in self.get_databases_names()):
             self.pointer = self.client[database]
@@ -65,3 +71,8 @@ class databaseTool:
 # }
 # respuesta = db_mongo.insert_into_collection(origin_user)
 # print('[+] insertar un elemento: ', respuesta)
+
+from dotenv import dotenv_values
+
+config = dotenv_values("./.env")
+db_mongo = databaseTool(config)
