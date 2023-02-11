@@ -4,9 +4,6 @@ from app.tools.database_connection import *
 
 config = dotenv_values("./.env")
 
-
-db_mongo = databaseTool(config)
-
 app = Flask(__name__, 
             static_url_path='', 
             static_folder='static',
@@ -15,4 +12,3 @@ app = Flask(__name__,
 
 from app.routes import landing
 from app.routes import login
-
