@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for
-from app.tools.database_connection import *
+from app.tools.database_connection import db_mongo
+from app.tools.token import generate_token
 
 @app.route("/login", methods=['GET'])
 def login():
@@ -25,8 +26,9 @@ def login_form():
     db_mongo.set_database('users')
     db_mongo.set_collection('operadores')
     user_data = db_mongo.search_into_collection({"username": username})
+    token = generate_token(password, username)
     try:
-        validated_token = (user_data['token'] == password)
+        validated_token = (user_data['token'] == token)
         print("[+] Result query mongoDB -> ", user_data, " -- validation: ", validated_token)
         if validated_token:
             return "Ok - Logueado"
