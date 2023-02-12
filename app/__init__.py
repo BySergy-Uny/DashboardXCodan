@@ -10,5 +10,4 @@ app = Flask(__name__,
             template_folder='templates')
 
 
-from app.routes import landing
-from app.routes import login
+from app.routes import landing, login, visualization
