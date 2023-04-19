@@ -1,4 +1,5 @@
 .env*
-
+Spacefile
 
 __pycache__/
+.space
