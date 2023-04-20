@@ -1,14 +1,24 @@
 from flask_login import login_user, current_user, logout_user
 from app import app, active_user
 from flask import render_template, request, redirect, url_for
-from app.tools.database_connection import db_mongo
 from app.tools.token import generate_token
 from app.models.user import User
+from deta import Deta
 
+from dotenv import dotenv_values
+
+config = dotenv_values("./.env")
 
 
 @app.route("/login", methods=['GET'])
 def login():
+    try:
+        print("[+]  active user: " +  active_user.name)
+        print("[+]  current user: " +  current_user.name)
+        if current_user == active_user:
+            return redirect(url_for('visualization'))  
+    except:
+        print("[+] Current user: out")
     args = request.args
     try:
         print("[+] Error login -> ", eval(args.get('error')))
@@ -29,9 +39,13 @@ def login_form():
     data = request.form
     username = data['username']
     password = data['password']
-    db_mongo.set_database('users')
-    db_mongo.set_collection('operadores')
-    user_data = db_mongo.search_into_collection({"username": username})
+    connector = Deta(config['DETA_PROJECT_KEY'])
+    db_users = connector.Base('users')
+    user_data = db_users.fetch({"username": username}).items
+    if len(user_data) > 0 :
+        user_data = user_data[0]
+    else:
+        return redirect(url_for('login', error=True))
     token = generate_token(password, username)
     validated_token = (user_data['token'] == token)
     print("[+] Result query mongoDB -> ", user_data, " -- validation: ", validated_token)
