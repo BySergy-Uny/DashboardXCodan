@@ -4,6 +4,7 @@ from flask import render_template, request, redirect, url_for
 from app.tools.token import generate_token
 from app.models.user import User
 from deta import Deta
+from flask_login import login_required
 
 from dotenv import dotenv_values
 
@@ -12,14 +13,17 @@ config = dotenv_values("./.env")
 
 @app.route("/login", methods=['GET'])
 def login():
+    args = request.args
     try:
         print("[+]  active user: " +  active_user.name)
         print("[+]  current user: " +  current_user.name)
+        if active_user.name == "":
+            raise
         if current_user == active_user:
             return redirect(url_for('visualization'))  
     except:
         print("[+] Current user: out")
-    args = request.args
+    
     try:
         print("[+] Error login -> ", eval(args.get('error')))
         error_value = eval(args.get('error'))
@@ -58,8 +62,9 @@ def login_form():
         return redirect(url_for('login', error=True))
     
 @app.route('/logout', methods=['GET','POST'])
+@login_required
 def logout():
     username = current_user.name
     logout_user()
-    return "LOGOUT " + username
+    return "LOGOUT: " + username
 
