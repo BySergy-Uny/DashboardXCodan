@@ -1,8 +1,8 @@
 from flask import Flask
 from dotenv import dotenv_values
-from app.tools.database_connection import *
 from flask_login import LoginManager
 from app.models.user import User
+import dash
 
 config = dotenv_values("./.env")
 
@@ -12,6 +12,10 @@ app = Flask(__name__,
             static_url_path='', 
             static_folder='static',
             template_folder='templates')
+
+
+app_dash = dash.Dash(__name__, title="DashboardXCodan", update_title="DashboardXCodan ..." ,server=app, url_base_pathname='/visualiation/')
+app_dash._favicon = "logomark-ligth-dashboardxcodan-withoutbg-fit.ico"
 
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -27,5 +31,6 @@ def load_user(user_id):
     return active_user
 
 active_user = User()
+
 
 from app.routes import landing, login, visualization
