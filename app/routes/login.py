@@ -1,7 +1,7 @@
 from flask_login import login_user, current_user, logout_user
 from app import app, active_user
 from flask import render_template, request, redirect, url_for
-from app.tools.token import generate_token
+from app.tools.token_gen import generate_token
 from app.models.user import User
 from deta import Deta
 from flask_login import login_required

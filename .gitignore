@@ -3,3 +3,6 @@ Spacefile
 
 __pycache__/
 .space
+
+*.csv
+*.xlsx
