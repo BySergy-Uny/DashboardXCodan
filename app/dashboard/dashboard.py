@@ -2,16 +2,15 @@
 from dash import html, dcc, Input, Output, ctx
 
 from app import app_dash
-import plotly.express as px
 import plotly.graph_objects as go
 from collections import deque
-import random
+from  app.tests.test import *
 
-datax = deque([0, 1, 2, 3, 4, 5, 6, 7], maxlen=8)
-datay = deque([1, 5, 5, 6, 3, 4, 5, 6], maxlen=8)
-
+get_update()
+df = get_frame()
+dfs = deque(df, maxlen=1)
 color_graph = deque(["black"], maxlen=1)
-
+measure_graph = deque(["temperatura"], maxlen=1)
 
 def getGraph(fig):
     graph = dcc.Graph(figure=fig, 
@@ -36,8 +35,10 @@ app_dash.layout = html.Div(children=[
 
 
 
-def getGraphical(color):
-
+def getGraphical(type, color):
+    df = dfs[0].head(10)
+    datax = df['timestamp']
+    datay = df[type]
     fig=go.Figure(
         go.Scatter(x=list(datax), y=list(datay), mode= 'lines+markers', marker={'color':color})
     )
@@ -59,7 +60,7 @@ def getGraphical(color):
 
 
 def getMeasures():
-
+    df = dfs[0].head(2)
     return [
         html.Div(id="measure1", children=[
             getGraph(
@@ -67,8 +68,8 @@ def getMeasures():
                     go.Indicator(
                         title = "humedad",
                         mode = "number+delta",
-                        value = list(datay)[-1],
-                        delta = {'reference': list(datay)[-2]}
+                        value = list(df['humedad'])[0],
+                        delta = {'reference': list(df['humedad'])[1]}
                         )
                 )
             )
@@ -81,8 +82,8 @@ def getMeasures():
                     go.Indicator(
                         title = "co2",
                         mode = "number+delta",
-                        value = list(datay)[-1],
-                        delta = {'reference': list(datay)[-2]}
+                        value = list(df['eco2'])[0],
+                        delta = {'reference': list(df['eco2'])[1]}
                         )
                 )
             )
@@ -95,8 +96,8 @@ def getMeasures():
                     go.Indicator(
                         title = "tvoc",
                         mode = "number+delta",
-                        value = list(datay)[-1],
-                        delta = {'reference': list(datay)[-2]}
+                        value = list(df['tvoc'])[0],
+                        delta = {'reference': list(df['tvoc'])[1]}
                         )
                 )
             )
@@ -109,8 +110,8 @@ def getMeasures():
                     go.Indicator(
                         title = "temperatura",
                         mode = "number+delta",
-                        value = list(datay)[-1],
-                        delta = {'reference': list(datay)[-2]}
+                        value = list(df['temperatura'])[0],
+                        delta = {'reference': list(df['temperatura'])[1]}
                         )
                 )
             )
@@ -119,15 +120,13 @@ def getMeasures():
         ),
     ]
 
-actualizar = True
 
 @app_dash.callback(Output('live-graph', 'children'),
     Input('graph-update', 'n_intervals'))
 def update_graphs(gr):
-    if actualizar and (gr!=None and gr>1):
-        datax.append(datax[-1]+1)
-        datay.append(random.randint(3, 9))
-    return getGraphical(color_graph[-1])
+    get_update()
+    dfs.append(get_frame())
+    return getGraphical(measure_graph[-1], color_graph[-1])
 
 @app_dash.callback(
     Output('out', 'children'),
@@ -141,12 +140,16 @@ def displayClick(btn1, btn2, btn3, btn4):
     if(button=="measure1" and btn1 != None):
         print("[+] Measure 1: ", button)
         color_graph.append("red")
+        measure_graph.append("humedad")
     elif(button=="measure2" and btn2 != None):
         print("[+] Measure 2", button)
         color_graph.append("blue")
+        measure_graph.append("eco2")
     elif(button=="measure3" and btn3 != None):
         print("[+] Measure 3", button)
         color_graph.append("green")
+        measure_graph.append("tvoc")
     elif(button=="measure4" and btn4 != None):
         print("[+] Measure 4", button)
         color_graph.append("yellow")
+        measure_graph.append("temperatura") 
