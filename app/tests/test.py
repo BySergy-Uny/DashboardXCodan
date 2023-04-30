@@ -1,9 +1,7 @@
 import pandas as pd
-from deta import Deta
-from dotenv import dotenv_values
+from ..tools.detaApp import *
 from datetime import datetime
 import random
-config = dotenv_values("./.env")
 
 
 def delete_all(db):
@@ -67,7 +65,6 @@ def get_frame():
 	test = connector.Base('data-test')
 	return query_all(test,None)
 
-connector = Deta(config['DETA_PROJECT_KEY'])
 
 db = connector.Base('data-test')
 delete_all(db)

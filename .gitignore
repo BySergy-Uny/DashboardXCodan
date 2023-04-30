@@ -1,4 +1,7 @@
 .env*
+.venv*
+.python*
+
 Spacefile
 
 __pycache__/
