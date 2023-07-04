@@ -82,7 +82,7 @@ class NodeMeasureTest():
         test = connector.Base('data-test')
         test.put(data)
 
-        self.index_generator += 50
+        self.index_generator += 60
         self.index_generator = self.index_generator % self.max_index
 
 
