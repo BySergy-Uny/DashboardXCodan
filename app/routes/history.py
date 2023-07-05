@@ -8,7 +8,7 @@ import plotly.express as px
 import plotly.io as px_translate
 import plotly.figure_factory as ff
 
-@app.route("/history")
+@app.route("/visualization/history")
 @login_required
 def history():
     response = dataDrive.get("reg_nodes_measures.csv")
