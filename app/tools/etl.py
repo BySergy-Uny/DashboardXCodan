@@ -10,7 +10,6 @@ db = dataBase
 def extraction(df={}):
     df = {}
     df['nodos'] = pd.read_csv('app/assets/reg_nodes_measures.csv')
-    df['temp'] = pd.read_excel('app/assets/reg_nodes_temp.xlsx')
     return df
 
 # Transform
@@ -28,26 +27,6 @@ def transform(df):
     df_auxiliar['timestamp'] = df_auxiliar['timestamp'].apply(lambda x: pd.Timestamp(x).timestamp())
 
     df['nodos'] = df_auxiliar.reset_index(drop=True)
-
-    df['temp'] = df['temp'].dropna(subset=['Temperatura','Timestamp\nyyyy-MM-ddTHH:mm:ss'])
-    df['temp'] = df['temp'].replace({np.nan:None})
-    df_auxiliar = pd.DataFrame()
-    df_auxiliar['timestamp'] = df['temp']['Timestamp\nyyyy-MM-ddTHH:mm:ss']
-    df_auxiliar['producto'] = df['temp']['Producto']
-    df_auxiliar['temperatura'] = df['temp']['Temperatura']
-
-
-    df_auxiliar['timestamp'] = pd.to_datetime(df_auxiliar['timestamp'], format='%Y-%m-%d %H:%M:%S')
-    # df_auxiliar['timestamp'] = df_auxiliar.timestamp.dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_auxiliar['timestamp'] = df_auxiliar['timestamp'].apply(lambda x: pd.Timestamp(x).timestamp())
-    
-
-    df['temp'] = df_auxiliar.reset_index(drop=True)
-
-
-    # df['temp'] = df['temp'].to_dict(orient='records')
-    # df['nodos'] = df['nodos'].to_dict(orient='records')
-    
     return df
 
 # Upload
