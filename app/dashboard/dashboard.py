@@ -76,10 +76,10 @@ def getGraphical(type, color):
         html.Div(id="main", children=[
             html.Img(src='../../img/logotype-ligth-dashboardxcodan-withoutbg-fit.png',
                 width="250vh"),
-            html.A("Historico", id="historical", style = css_button_hist,
-                        href='/visualization/historical'),
+            html.A("Historico", id="history", style = css_button_hist,
+                        href='/visualization/history'),
             html.A("Salir", id="salir", style = css_button,
-                        href='/home'),
+                        href='/logout'),
             html.Br(),
             html.Div(children = [
             html.H1(children=str(type).capitalize(),
