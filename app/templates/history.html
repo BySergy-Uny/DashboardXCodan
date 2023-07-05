@@ -6,13 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="/css/landing.css">
+    <link rel="stylesheet" href="/css/history.css">
+    
 </head>
+
 <body>
     <div class="navbar">
         <div class="logo">
             <img class="logotype" src="img\logotype-ligth-dashboardxcodan-withoutbg-fit.png">
         </div>
     </div>
-        
+    
+    <div class="block">
+        <h1 class="title">Historial</h1>
+        <br>
+        <div class="graph">
+            {{graph|safe}}
+        </div>
+       <div class="table">
+         {{table|safe}}
+       </div>
+      
+    </div>
+    
 </body>
 </html>

@@ -1,11 +1,15 @@
-# from app.tools.detaApp import *
+
 from datetime import datetime
 import pandas as pd
 
-# dataBaseTest = connector.Base("data-test")
-print('Carga generador')
-df = pd.read_csv('./app/assets/generador_temp.csv')
+import sys
+# Insert the path of modules folder 
+sys.path.insert(0, "./app/tools")
+
+from detaApp import dataDrive
+response = dataDrive.get("reg_nodes_measures.csv")
+
+df = pd.read_csv(response)
+
+
 print(df.head())
-
-print(df.loc[0]['pred'])
-
