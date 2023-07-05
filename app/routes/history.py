@@ -16,6 +16,6 @@ def history():
     df['fecha'] = pd.to_datetime(df['date'])
     df = df.set_index('fecha')
     df = df.sort_index()
-    graph = px_translate.to_html(px.line(df, y='temperatura', render_mode='svg'))
+    graph = px_translate.to_html(px.line(df,title='Temperatura', y='temperatura', render_mode='svg'))
     table = px_translate.to_html(ff.create_table(df[['date', 'tvoc', 'eco2', 'humedad', 'temperatura']].tail()))
     return render_template('history.html', graph=graph, table=table)
