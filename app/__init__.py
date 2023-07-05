@@ -41,4 +41,4 @@ def load_user(user_id):
 active_user = User()
 
 
-from app.routes import landing, login, visualization
+from app.routes import landing, login, visualization, history
