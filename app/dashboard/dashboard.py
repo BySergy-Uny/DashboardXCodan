@@ -6,12 +6,20 @@ import plotly.graph_objects as go
 from collections import deque
 from  app.tests.test import *
 
+from app.dashboard.alert import *
+
+
 node_test = NodeMeasureTest()
 node_test.get_update()
 df = node_test.get_frame()
 dfs = deque(df, maxlen=1)
 color_graph = deque(["black"], maxlen=1)
 measure_graph = deque(["temperatura"], maxlen=1)
+alert = deque([False], maxlen=1)
+
+
+    
+
 
 def getGraph(fig, responsive):
     graph = dcc.Graph(figure=fig, 
@@ -85,14 +93,29 @@ def getGraphical(type, color):
             getGraph(fig, responsive=True)])
         ]),
         html.Div(children=getMeasures(),
+                 
         style = {'display':'grid', 'grid-auto-rows':'22rem', 'grid-template-columns':'repeat(4, 25vw)'}
-        )
-    ]
-    return graphical
+        ),
+        html.Div([
+             dcc.ConfirmDialog(
+                id='confirm-danger',
+                message='Danger danger! Are you sure you want to continue?',
+            )   
+        ])
+    ] 
+    
+    return graphical 
 
 
 def getMeasures():
     df = dfs[0].head(2)
+    check, m1c, m2c, m3c, m4c = check_values(list(df['temperatura'])[0], alert[-1])
+    alert.append(check)
+    print("alert", check)
+    measure1_color = m1c
+    measure2_color = m2c
+    measure3_color = m3c
+    measure4_color = m4c
     return [
         html.Div(id="measure1", children=[
             getGraph(
@@ -101,7 +124,8 @@ def getMeasures():
                         title = "Humedad",
                         mode = "number+delta",
                         value = list(df['humedad'])[0],
-                        delta = {'reference': list(df['humedad'])[1]}
+                        delta = {'reference': list(df['humedad'])[1]},
+                        number={'font_color':measure1_color, 'font_size':40}
                         )
                 ), responsive= True
             )
@@ -112,10 +136,11 @@ def getMeasures():
             getGraph(
                 go.Figure(
                     go.Indicator(
-                        title = "Co2",
+                        title = "Eco2",
                         mode = "number+delta",
                         value = list(df['eco2'])[0],
-                        delta = {'reference': list(df['eco2'])[1]}
+                        delta = {'reference': list(df['eco2'])[1]},
+                        number={'font_color':measure2_color, 'font_size':40}
                         )
                 ), responsive= True
             )
@@ -129,7 +154,8 @@ def getMeasures():
                         title = "Tvoc",
                         mode = "number+delta",
                         value = list(df['tvoc'])[0],
-                        delta = {'reference': list(df['tvoc'])[1]}
+                        delta = {'reference': list(df['tvoc'])[1]},
+                        number={'font_color':measure3_color, 'font_size':40}
                         )
                 ), responsive= True
             )
@@ -143,22 +169,31 @@ def getMeasures():
                         title = "Temperatura",
                         mode = "number+delta",
                         value = list(df['temperatura'])[0],
-                        delta = {'reference': list(df['temperatura'])[1]}
+                        delta = {'reference': list(df['temperatura'])[1]},
+                        number={'font_color':measure4_color, 'font_size':40}
                         )
                 ), responsive= True
             )
         ],
         style={'width':'100%', 'height':'100%'}
         ),
-    ]
+    ]+ [getAudio(alert[-1])]
 
+
+@app_dash.callback(Output('confirm-danger', 'displayed'),
+              Input('graph-update', 'n_intervals'))
+def display_confirm(value):
+    # check = check_values(list(df['temperatura'])[1], alert[-1])
+    if False:
+        return True
+    return False
 
 @app_dash.callback(Output('live-graph', 'children'),
     Input('graph-update', 'n_intervals'))
 def update_graphs(gr):
     dfs.append(node_test.get_frame())
     node_test.get_update()
-    return getGraphical(measure_graph[-1], color_graph[-1])
+    return getGraphical(measure_graph[-1], color_graph[-1]) 
 
 @app_dash.callback(
     Output('out', 'children'),
@@ -170,18 +205,23 @@ def update_graphs(gr):
 def displayClick(btn1, btn2, btn3, btn4):
     button = ctx.triggered_id
     if(button=="measure1" and btn1 != None):
+        alert.append(True)
         print("[+] Measure 1: ", button)
         color_graph.append("red")
         measure_graph.append("humedad")
     elif(button=="measure2" and btn2 != None):
+        alert.append(True)
         print("[+] Measure 2", button)
         color_graph.append("blue")
         measure_graph.append("eco2")
     elif(button=="measure3" and btn3 != None):
+        alert.append(True)
         print("[+] Measure 3", button)
         color_graph.append("green")
         measure_graph.append("tvoc")
     elif(button=="measure4" and btn4 != None):
+        alert.append(True)
         print("[+] Measure 4", button)
-        color_graph.append("orange")
+        color_graph.append("black")
         measure_graph.append("temperatura") 
+    

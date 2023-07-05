@@ -4,9 +4,17 @@ from flask_login import LoginManager
 from app.models.user import User
 import dash
 
+# import os
+
+# os.system("start ./app/static/init.wav")
+
+# import pygame
+# pygame.mixer.init()
+# sound = pygame.mixer.Sound("app/static/init.wav")
+# sound.play()
+ 
+
 config = dotenv_values("./.env")
-
-
 
 app = Flask(__name__, 
             static_url_path='', 
