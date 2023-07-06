@@ -21,6 +21,19 @@ def history():
     table = px_translate.to_html(ff.create_table(df[['date', 'tvoc', 'eco2', 'humedad', 'temperatura']].tail()))
     return render_template('history.html', graph=graph, table=table)
 
+@app.route("/visualization/history/prediction")
+@login_required
+def prediction():
+    response = dataDrive.get("reg_nodes_measures.csv")
+    df = pd.read_csv(response)
+    df = df.query("entity_type == 'nodo1'")
+    df['fecha'] = pd.to_datetime(df['date'])
+    df = df.set_index('fecha')
+    df = df.sort_index()
+    graph = px_translate.to_html(px.line(df,title='Temperatura', y='temperatura', render_mode='svg'))
+    table = px_translate.to_html(ff.create_table(df[['date', 'tvoc', 'eco2', 'humedad', 'temperatura']].tail()))
+    return render_template('history.html', graph=graph, table=table)
+
 
 @login_manager.unauthorized_handler     # In unauthorized_handler we have a callback URL 
 def unauthorized_callback():            # In call back url we can specify where we want to 
