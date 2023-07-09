@@ -14,14 +14,12 @@ class NodeMeasureTest():
         self.index_generator = 20
 
     def delete_all(self):
-        print('[+] Delete all')
         
         res = self.db.fetch()
         all_items = res.items
         
         # fetch until last is 'None'
         while len(all_items)>1 or res.last :
-            print('[+] Delete all',len(all_items))
             while len(all_items)>0:
                 item = all_items.pop(0)
                 self.db.delete(item['key'])

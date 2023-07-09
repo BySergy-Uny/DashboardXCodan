@@ -35,7 +35,6 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
     id = user_id
-    print("[+] user_id: ", active_user.id, id)
     return active_user
 
 active_user = User()

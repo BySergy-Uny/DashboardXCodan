@@ -15,20 +15,16 @@ config = dotenv_values("./.env")
 def login():
     args = request.args
     try:
-        print("[+]  active user: " +  active_user.name)
-        print("[+]  current user: " +  current_user.name)
         if active_user.name == "":
             raise
         if current_user == active_user:
             return redirect(url_for('visualization'))  
     except:
-        print("[+] Current user: out")
+        active_user.name = ""
     
     try:
-        print("[+] Error login -> ", eval(args.get('error')))
         error_value = eval(args.get('error'))
     except:
-        print("[+] Error login -> ", "Error value" , str(args.get('error')))
         if args.get('error')==None:
             error_value = False
         else: 
@@ -52,7 +48,6 @@ def login_form():
         return redirect(url_for('login', error=True))
     token = generate_token(password, username)
     validated_token = (user_data['token'] == token)
-    print("[+] Result query mongoDB -> ", user_data, " -- validation: ", validated_token)
     if validated_token:
         active_user.name = username
         active_user.password = token

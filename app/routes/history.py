@@ -8,7 +8,6 @@ import plotly.graph_objs as go
 import plotly.express as px
 import plotly.io as px_translate
 import plotly.figure_factory as ff
-
 from skforecast.utils import load_forecaster
 
 @app.route("/visualization/history")
