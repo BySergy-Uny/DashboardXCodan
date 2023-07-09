@@ -66,5 +66,5 @@ def login_form():
 def logout():
     username = current_user.name
     logout_user()
-    return "LOGOUT: " + username
+    return redirect(url_for('home'))
 

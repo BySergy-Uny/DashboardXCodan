@@ -48,6 +48,10 @@
     font-family: 'Lato', sans-serif;
 }
 
+.prevprev {
+    right: 22rem;
+}
+
 .prev {
     right: 10rem;
 }

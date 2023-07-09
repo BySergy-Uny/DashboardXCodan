@@ -22,10 +22,10 @@ app = Flask(__name__,
             template_folder='templates')
 
 
-app_dash = dash.Dash(__name__, title="DashboardXCodan", update_title="DashboardXCodan ..." ,server=app, url_base_pathname='/visualiation/')
+app_dash = dash.Dash(__name__, title="DashboardXCodan", update_title="DashboardXCodan ..." ,server=app, url_base_pathname='/visualization/')
 app_dash._favicon = "logomark-ligth-dashboardxcodan-withoutbg-fit.ico"
 
-app.secret_key = 'super secret key'
+app.secret_key = config['FLASK_SECRET_KEY']
 app.config['SESSION_TYPE'] = 'filesystem'
 
 login_manager = LoginManager()
