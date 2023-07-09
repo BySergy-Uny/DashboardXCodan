@@ -1,0 +1,39 @@
+body {
+    /* Landing Page Responsive */
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Background/Ligth */
+
+    background: #F4F5F7;
+
+        
+}
+
+.navbar {
+    
+    /* Navbar Simple */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    height: 85px;
+    left: 5.6%;
+    right: 15.07%;
+    top: 18px;
+
+}
+
